@@ -9,7 +9,7 @@ class BST
 public:
     class Node;
     Node*& get_root();
-    //void bfs(std::function<void(Node*& node)> func);
+    void bfs(std::function<void(Node*& node)> func);
 
     
 private:

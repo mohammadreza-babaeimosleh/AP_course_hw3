@@ -9,12 +9,10 @@
 ../include/bst.h
 iostream
 -
+functional
+-
 
-/usr/src/app/src/main.cpp
-iostream
--
-gtest/gtest.h
--
+/usr/src/app/src/bst.cpp
 bst.h
 /usr/src/app/src/bst.h
 

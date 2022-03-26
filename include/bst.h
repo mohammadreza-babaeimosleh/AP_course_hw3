@@ -2,12 +2,14 @@
 #define BST_H
 
 #include <iostream>
+#include <functional>
 
 class BST
 {
 public:
     class Node;
     Node*& get_root();
+    //void bfs(std::function<void(Node*& node)> func);
 
     
 private:

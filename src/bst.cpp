@@ -139,4 +139,57 @@ bool BST::add_node(int value)
 
     adder(value, root);
     return true;
+
+}
+
+
+BST::Node** BST::find_node(int value)
+{
+
+    std::function<Node**(int value, Node** root)> finder = [&](int value, Node** root)->Node**
+    {
+
+        if((*root)->value == value)
+        {
+            std::cout << "value found" << std::endl;
+            return root;
+        }
+        else if((*root)->value > value)
+        {
+
+            if((*root)->left == nullptr)
+            {
+                std::cout << "value does not exist" << std::endl;
+                return nullptr;
+            }
+            else
+            {   
+                Node* tmp{(*root)->left};
+                finder(value, &tmp);
+            }
+
+        }
+        else if((*root)->value < value)
+        {
+
+            if((*root)->right == nullptr)
+            {
+                std::cout << "value does not exist" << std::endl;
+                return nullptr; 
+            }
+            else
+            {
+                Node* tmp{(*root)->right};
+                finder(value, &tmp);
+            }
+
+        }
+
+        return nullptr;
+
+    };
+
+    Node** tmp{finder(value, &root)};
+    return tmp;
+
 }

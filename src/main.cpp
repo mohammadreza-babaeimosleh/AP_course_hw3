@@ -48,12 +48,13 @@ int main(int argc, char **argv)
             }
         };
         tree.add_node(16);
-        tree.add_node(20);
-        //std::cout << ((root.right)->right)->value<< "  " << ((root.right)->right)->right << "  " << ((root.right)->right)->left<< std::endl;
-        //std::cout<< tree.length() << std::endl;
-        //tree.bfs(print);
-        //tree.find_node(20);
-        //tree.find_parrent(10);
+        // tree.add_node(20);
+        // std::cout << ((root.right)->right)->value<< "  " << ((root.right)->right)->right << "  " << ((root.right)->right)->left<< std::endl;
+        // std::cout<< tree.length() << std::endl;
+        // tree.bfs(print);
+        // tree.find_node(20);
+        // tree.find_parrent(20);
+        //tree.find_successor(15);
         
         
     }

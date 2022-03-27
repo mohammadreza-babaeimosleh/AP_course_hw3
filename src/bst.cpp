@@ -116,8 +116,8 @@ bool BST::add_node(int value)
 
             if(root->left == nullptr)
             {
-                Node* tmp{new Node{value}};
-                root->left = tmp;
+                Node* node{new Node{value}};
+                root->left = node;
             }
             else
             {
@@ -130,8 +130,8 @@ bool BST::add_node(int value)
 
             if(root->right == nullptr)
             {
-                Node* tmp {new Node{value}};
-                root->right = tmp ;
+                Node* node {new Node{value}};
+                root->right = node ;
             }
             else
             {
@@ -258,3 +258,42 @@ BST::Node** BST::find_parrent(int value)
 }
 
 
+BST::Node** BST::find_successor(int value)
+{
+    if(find_node(value) == nullptr)
+    {
+        std::cout << "value does not exist" << std::endl;
+        return nullptr;
+    }
+    else
+    {
+
+        Node** target_node{find_node(value)};
+        Node** successor{target_node};
+        if((*target_node)->left == nullptr)
+        {
+            std::cout << (*successor)->value << std::endl;
+            return successor;
+        }
+        else
+        {
+            successor = &((*target_node)->left);
+
+            while(true)
+            {
+                if((*successor)->right != nullptr)
+                {
+                    successor = &((*successor)->right);
+                }
+                else
+                {
+                    std::cout << (*successor)->value << std::endl;
+                    return successor;
+                }
+            }
+
+        }
+
+    }
+
+}

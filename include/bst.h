@@ -14,6 +14,7 @@ public:
     bool add_node(int value);
     Node** find_node(int value);
     Node** find_parrent(int value);
+    Node** find_successor(int value);
     BST(Node* _root);
 
     

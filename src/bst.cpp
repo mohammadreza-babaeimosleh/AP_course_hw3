@@ -5,6 +5,7 @@ BST::Node*& BST::get_root()
     return root ; 
 }
 
+
 void BST::bfs(std::function<void(Node*& node)> func)
 {
 
@@ -65,4 +66,30 @@ void BST::bfs(std::function<void(Node*& node)> func)
         }
     }
 
+}
+
+
+size_t BST::length()
+{
+
+    size_t counter{};
+    std::function<void(size_t counter, Node*& root)> length_cal = [&](size_t counter, Node* root)->void
+    {
+        if(root != nullptr)
+        {
+            counter += 1;
+        }
+        else
+        {
+            return;
+        }
+
+        length_cal(counter, root->left);
+        length_cal(counter, root->right);
+
+    };
+
+    length_cal(counter, root);
+
+    return counter;
 }

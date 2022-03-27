@@ -93,3 +93,50 @@ size_t BST::length()
 
     return counter;
 }
+
+
+bool BST::add_node(int value)
+{
+
+    std::function<void(int value, Node*& root)> adder = [&](int value, Node* root)->void
+    {
+
+        if(root->value == value)
+        {
+            std::cout << "this value already exists in the tree" << std::endl;
+            return;
+        }
+        else if(root->value > value)
+        {
+
+            if(root->left == nullptr)
+            {
+                Node tmp{value};
+                root->left = &tmp ;
+            }
+            else
+            {
+                adder(value, root->left);
+            }
+
+        }
+        else if(root->value < value)
+        {
+
+            if(root->right == nullptr)
+            {
+                Node tmp{value};
+                root->right = &tmp;
+            }
+            else
+            {
+                adder(value, root->right);
+            }
+
+        }
+
+    };
+
+    adder(value, root);
+    return true;
+}

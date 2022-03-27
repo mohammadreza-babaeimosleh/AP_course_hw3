@@ -6,7 +6,7 @@ int main(int argc, char **argv)
 {
     if (true) // make false to run unit-tests
     {
-        BST::Node a{};
+
         
     }
     else

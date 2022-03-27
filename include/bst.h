@@ -11,6 +11,7 @@ public:
     Node*& get_root();
     void bfs(std::function<void(Node*& node)> func);
     size_t length();
+    bool add_node(int value);
 
     
 private:

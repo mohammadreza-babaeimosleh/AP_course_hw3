@@ -12,10 +12,6 @@ iostream
 functional
 -
 
-/usr/src/app/src/bst.cpp
-bst.h
-/usr/src/app/src/bst.h
-
 /usr/src/app/src/main.cpp
 iostream
 -

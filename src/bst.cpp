@@ -153,8 +153,7 @@ BST::Node** BST::find_node(int value)
 
     std::function<Node**(int value, Node** root)> finder = [&](int value, Node** root)->Node**
     {
-
-        Node** node{nullptr};
+        
         if((*root)->value == value)
         {
             std::cout << "value found" << std::endl;
@@ -170,8 +169,7 @@ BST::Node** BST::find_node(int value)
             }
             else
             {   
-                Node* tmp{(*root)->left};
-                node = finder(value, &tmp);
+                return finder(value,&((*root)->left));
             }
 
         }
@@ -185,8 +183,7 @@ BST::Node** BST::find_node(int value)
             }
             else
             {
-                Node* tmp{(*root)->right};
-                node = finder(value, &tmp);
+                return finder(value,&((*root)->right));
             }
 
         }
@@ -295,5 +292,37 @@ BST::Node** BST::find_successor(int value)
         }
 
     }
+
+}
+
+
+bool BST::delete_node(int value)
+{
+    Node** target_node{ find_node(value) };
+
+    if(target_node == nullptr)
+    {
+        return false;
+    }
+
+    if((*target_node)->left == nullptr && (*target_node)->right == nullptr)
+    {
+        std::cout << "we want to delete " << (*target_node)->value <<std::endl; 
+        (*target_node) = nullptr;
+        return true;
+    }
+
+    if((*target_node)->left == nullptr && (*target_node)->right != nullptr)
+    {
+        *target_node = (*target_node)->right;
+        return true;
+    }
+
+    if((*target_node)->left != nullptr && (*target_node)->right == nullptr)
+    {
+        *target_node = (*target_node)->left;
+        return true;
+    }
+    
 
 }

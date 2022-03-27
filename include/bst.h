@@ -15,6 +15,7 @@ public:
     Node** find_node(int value);
     Node** find_parrent(int value);
     Node** find_successor(int value);
+    bool delete_node(int value);
     BST(Node* _root);
 
     

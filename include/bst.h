@@ -13,7 +13,7 @@ public:
     size_t length();
     bool add_node(int value);
     Node** find_node(int value);
-    //Node** find_parrent(int value);
+    Node** find_parrent(int value);
 
     
 private:

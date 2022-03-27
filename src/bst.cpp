@@ -148,6 +148,7 @@ BST::Node** BST::find_node(int value)
 
     std::function<Node**(int value, Node** root)> finder = [&](int value, Node** root)->Node**
     {
+
         Node** node{nullptr};
         if((*root)->value == value)
         {
@@ -189,25 +190,62 @@ BST::Node** BST::find_node(int value)
 
     };
 
-    Node** tmp{finder(value, &root)};
-    return tmp;
+    return finder(value, &root);
 
 }
 
 
-// BST::Node** BST::find_parrent(int value)
-// {
+BST::Node** BST::find_parrent(int value)
+{
 
-//     std::function<Node**(int value, Node** root)> parrent_finder = [&](int value, Node** root)->Node**
-//     {
+    if(find_node(value) == nullptr)
+    {
+        std::cout << "the value does not exist" << std::endl;
+        return nullptr;
+    }
 
-//         if((*root) == nullptr)
-//         {
-//             return nullptr;
-//         }
+    std::function<Node**(int value, Node** root)> parrent_finder = [&](int value, Node** root)->Node**
+    {
+        Node** parrent{nullptr};
 
-//         if(((*root)->left)->value =
+        if((*root) == nullptr)
+        {
+            return nullptr;
+        }
+
+        if((*root)->value == value)
+        {
+            std::cout << "given valuue is the root and has no parrents" << std::endl;
+            return nullptr;
+        }
+
+        if(((*root)->left) !=nullptr && ((*root)->left)->value == value)
+        {
+            return root;
+        }
+
         
-//     }
+        if(((*root)->right) !=nullptr && ((*root)->right)->value == value)
+        {
+            return root;
+        }
 
-// }
+        if((*root)->value > value)
+        {
+            Node* tmp{(*root)->left};
+            parrent = parrent_finder(value, &tmp);
+        }
+
+        if((*root)->value < value)
+        {
+            Node* tmp{(*root)->right};
+            parrent = parrent_finder(value, &tmp);
+        }
+
+        return parrent;
+        
+    };
+
+    return parrent_finder(value, &root);
+
+}

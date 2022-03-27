@@ -148,7 +148,7 @@ BST::Node** BST::find_node(int value)
 
     std::function<Node**(int value, Node** root)> finder = [&](int value, Node** root)->Node**
     {
-
+        Node** node{nullptr};
         if((*root)->value == value)
         {
             std::cout << "value found" << std::endl;
@@ -165,7 +165,7 @@ BST::Node** BST::find_node(int value)
             else
             {   
                 Node* tmp{(*root)->left};
-                finder(value, &tmp);
+                node = finder(value, &tmp);
             }
 
         }
@@ -180,12 +180,12 @@ BST::Node** BST::find_node(int value)
             else
             {
                 Node* tmp{(*root)->right};
-                finder(value, &tmp);
+                node = finder(value, &tmp);
             }
 
         }
 
-        return nullptr;
+        return node;
 
     };
 
@@ -193,3 +193,21 @@ BST::Node** BST::find_node(int value)
     return tmp;
 
 }
+
+
+// BST::Node** BST::find_parrent(int value)
+// {
+
+//     std::function<Node**(int value, Node** root)> parrent_finder = [&](int value, Node** root)->Node**
+//     {
+
+//         if((*root) == nullptr)
+//         {
+//             return nullptr;
+//         }
+
+//         if(((*root)->left)->value =
+        
+//     }
+
+// }

@@ -16,3 +16,11 @@ functional
 bst.h
 /usr/src/app/src/bst.h
 
+/usr/src/app/src/main.cpp
+iostream
+-
+gtest/gtest.h
+-
+bst.h
+/usr/src/app/src/bst.h
+

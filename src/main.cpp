@@ -55,7 +55,7 @@ int main(int argc, char **argv)
         // tree.find_node(20);
         // tree.find_parrent(20);
         //tree.find_successor(15);
-        tree.delete_node(4);
+        tree.delete_node(10);
         tree.bfs(print);
 
         

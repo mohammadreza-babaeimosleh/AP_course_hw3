@@ -153,7 +153,7 @@ BST::Node** BST::find_node(int value)
 
     std::function<Node**(int value, Node** root)> finder = [&](int value, Node** root)->Node**
     {
-        
+
         if((*root)->value == value)
         {
             std::cout << "value found" << std::endl;
@@ -188,7 +188,7 @@ BST::Node** BST::find_node(int value)
 
         }
 
-        return node;
+        return nullptr;
 
     };
 
@@ -269,7 +269,6 @@ BST::Node** BST::find_successor(int value)
         Node** successor{ target_node };
         if((*target_node)->left == nullptr)
         {
-            std::cout << (*successor)->value << std::endl;
             return successor;
         }
         else
@@ -284,7 +283,6 @@ BST::Node** BST::find_successor(int value)
                 }
                 else
                 {
-                    std::cout << (*successor)->value << std::endl;
                     return successor;
                 }
             }
@@ -314,15 +312,25 @@ bool BST::delete_node(int value)
 
     if((*target_node)->left == nullptr && (*target_node)->right != nullptr)
     {
+        std::cout << "we want to delete " << (*target_node)->value <<std::endl; 
         *target_node = (*target_node)->right;
         return true;
     }
 
     if((*target_node)->left != nullptr && (*target_node)->right == nullptr)
     {
+        std::cout << "we want to delete " << (*target_node)->value <<std::endl; 
         *target_node = (*target_node)->left;
         return true;
     }
+
+    std::cout << "we want to delete " << (*target_node)->value <<std::endl; 
+    Node** successor{find_successor(value)};
+    (*target_node)->value = (*successor)->value;
+    *successor = nullptr;
+    return true;
+    
+
     
 
 }

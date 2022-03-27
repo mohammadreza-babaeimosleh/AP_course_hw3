@@ -268,8 +268,8 @@ BST::Node** BST::find_successor(int value)
     else
     {
 
-        Node** target_node{find_node(value)};
-        Node** successor{target_node};
+        Node** target_node{ find_node(value) };
+        Node** successor{ target_node };
         if((*target_node)->left == nullptr)
         {
             std::cout << (*successor)->value << std::endl;

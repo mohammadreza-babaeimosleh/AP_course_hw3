@@ -12,7 +12,11 @@ iostream
 functional
 -
 
-/usr/src/app/src/bst.cpp
+/usr/src/app/src/main.cpp
+iostream
+-
+gtest/gtest.h
+-
 bst.h
 /usr/src/app/src/bst.h
 

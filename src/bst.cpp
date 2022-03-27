@@ -1,5 +1,11 @@
 #include "bst.h"
 
+BST::BST(Node* _root)
+    : root{_root}
+{
+    std::cout << "counstructor" << std::endl;
+}
+
 BST::Node*& BST::get_root()
 {
     return root ; 
@@ -73,7 +79,7 @@ size_t BST::length()
 {
 
     size_t counter{};
-    std::function<void(size_t counter, Node*& root)> length_cal = [&](size_t counter, Node* root)->void
+    std::function<void(size_t& count, Node*& root)> length_cal = [&](size_t count, Node* root)->void
     {
         if(root != nullptr)
         {
@@ -84,11 +90,10 @@ size_t BST::length()
             return;
         }
 
-        length_cal(counter, root->left);
-        length_cal(counter, root->right);
+        length_cal(count, root->left);
+        length_cal(count, root->right);
 
     };
-
     length_cal(counter, root);
 
     return counter;
@@ -111,8 +116,8 @@ bool BST::add_node(int value)
 
             if(root->left == nullptr)
             {
-                Node tmp{value};
-                root->left = &tmp ;
+                Node* tmp{new Node{value}};
+                root->left = tmp;
             }
             else
             {
@@ -125,8 +130,8 @@ bool BST::add_node(int value)
 
             if(root->right == nullptr)
             {
-                Node tmp{value};
-                root->right = &tmp;
+                Node* tmp {new Node{value}};
+                root->right = tmp ;
             }
             else
             {
@@ -221,12 +226,14 @@ BST::Node** BST::find_parrent(int value)
 
         if(((*root)->left) !=nullptr && ((*root)->left)->value == value)
         {
+            std::cout << "parrent is   " << (*root)->value << std::endl;
             return root;
         }
 
         
         if(((*root)->right) !=nullptr && ((*root)->right)->value == value)
         {
+            std::cout << "parrent is   " << (*root)->value << std::endl;
             return root;
         }
 
@@ -249,3 +256,5 @@ BST::Node** BST::find_parrent(int value)
     return parrent_finder(value, &root);
 
 }
+
+

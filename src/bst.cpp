@@ -21,7 +21,6 @@ BST::Node*& BST::get_root()
 void BST::bfs(std::function<void(Node*& node)> func) 
 {
 
-
     std::function<size_t(Node*& node)> depth = [&](Node* node)->size_t
     {
         
@@ -67,6 +66,7 @@ void BST::bfs(std::function<void(Node*& node)> func)
     };
 
     size_t tree_depth{ depth(root) };
+
     if(tree_depth == 0)
     {
         return;
@@ -385,23 +385,54 @@ BST& BST::operator++()
 
 BST BST::operator++(int)
 {
-    BST tmp{*root};
+    BST tmp{*this};
     ++(*this);
     
     return tmp;
 }
 
 
- BST::~BST()
- {
+BST::~BST()
+{
+    
  	std::vector<Node*> nodes;
  	bfs([&nodes](BST::Node*& node){nodes.push_back(node);});
  	for(auto& node: nodes)
     {
-        std::cout << node->value <<std::endl;
  		delete node;
     }
- }
+}
+
+
+BST::BST(const BST& bst)
+{
+
+    std::cout << "BST copy constructor" << std::endl;
+    std::function<void(Node*const& root_org, Node** root)> filler = [&](Node*const root_org, Node** root)->void
+    {   
+        
+        if(root_org != nullptr)
+        {
+            *root = new Node{(root_org->value)};
+        }
+        
+
+        if(root_org->left != nullptr)
+        {
+            filler(root_org->left, &((*root)->left));
+        }
+
+        if(root_org->right != nullptr)
+        {
+            filler(root_org->right, &((*root)->right));
+        } 
+
+        return;
+
+    };
+
+    filler(bst.root, &root);
+}
  
 
 

@@ -23,6 +23,7 @@ public:
     BST operator++(int);
     ~BST();
     BST();
+    BST(const BST& bst);
 
     
 private:

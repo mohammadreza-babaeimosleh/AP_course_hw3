@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 #include "bst.h"
 
+
 int main(int argc, char **argv)
 {
     if (true) // make false to run unit-tests
@@ -15,8 +16,12 @@ int main(int argc, char **argv)
         tree.add_node(12);
         tree.add_node(13);
         tree.add_node(16);
-        
+        //BST copy_tree{tree};
+        // std::cout<< (copy_tree.get_root())->value << std::endl;
+        //std::cout << tree++ << std::endl;
+        //std::cout << tree << std::endl;
 
+        //std::cout << tree << std::endl;
         // std::function<void(BST::Node*& node)> print = [&](BST::Node* node)->void
         // {
         //     std::cout << node->value << "\t" ;

@@ -22,41 +22,43 @@ int main(int argc, char **argv)
         node2.left = &node5;
         node5.right = &node6;
 
-        std::function<void(BST::Node*& node)> print = [&](BST::Node* node)->void
-        {
-            std::cout << node->value << "\t" ;
-            if(node->left != nullptr)
-            {
-                std::cout << (node->left)->value << "\t" ;
-            }
-            else
-            {
-               if(node->right == nullptr)
-               {
-                    std::cout<< "" <<std::endl;
-               } 
+        // std::function<void(BST::Node*& node)> print = [&](BST::Node* node)->void
+        // {
+        //     std::cout << node->value << "\t" ;
+        //     if(node->left != nullptr)
+        //     {
+        //         std::cout << (node->left)->value << "\t" ;
+        //     }
+        //     else
+        //     {
+        //        if(node->right == nullptr)
+        //        {
+        //             std::cout<< "" <<std::endl;
+        //        } 
 
-            }
+        //     }
 
-            if(node->right != nullptr)
-            {
-                std::cout << (node->right)->value << std::endl;
-            }
-            else
-            {
-               std::cout<< "" <<std::endl;
-            }
-        };
+        //     if(node->right != nullptr)
+        //     {
+        //         std::cout << (node->right)->value << std::endl;
+        //     }
+        //     else
+        //     {
+        //        std::cout<< "" <<std::endl;
+        //     }
+        // };
+
         tree.add_node(16);
         // tree.add_node(20);
         // std::cout << ((root.right)->right)->value<< "  " << ((root.right)->right)->right << "  " << ((root.right)->right)->left<< std::endl;
         // std::cout<< tree.length() << std::endl;
-        tree.bfs(print);
+        //tree.bfs(print);
         // tree.find_node(20);
         // tree.find_parrent(20);
         //tree.find_successor(15);
-        tree.delete_node(10);
-        tree.bfs(print);
+        //tree.delete_node(10);
+        //tree.bfs(print);
+        std::cout << tree << std::endl;
 
         
         

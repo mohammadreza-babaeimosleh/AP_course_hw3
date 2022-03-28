@@ -12,7 +12,7 @@ BST::Node*& BST::get_root()
 }
 
 
-void BST::bfs(std::function<void(Node*& node)> func)
+void BST::bfs(std::function<void(Node*& node)> func) 
 {
 
     std::function<size_t(Node*& node)> depth = [&](Node* root)->size_t
@@ -330,7 +330,27 @@ bool BST::delete_node(int value)
     *successor = nullptr;
     return true;
     
-
-    
-
 }
+
+
+std::ostream& operator<<(std::ostream& os, BST bst)
+{
+    os << "************************************************************************************************ " << std::endl;
+
+    std::function<void(BST::Node*& node)> print = [&](BST::Node* node)->void
+    {
+        os << node << "\t" ; 
+        os << "=> value: " << node->value << "\t";
+        os << "left :"<< std::left << std::setw(15) << node->left << "\t" << "right: " << node->right << std::endl;
+    };
+    
+    bst.bfs(print);
+
+    os << "binary search tree size: " << bst.length() << std::endl;
+
+    os << "************************************************************************************************ " << std::endl;
+
+    return os;
+}
+
+

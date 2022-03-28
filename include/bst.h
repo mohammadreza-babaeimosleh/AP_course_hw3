@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <functional>
+#include <iomanip>
 
 class BST
 {
@@ -22,6 +23,7 @@ public:
 private:
     Node* root;
 };
+
 
 class BST::Node
 {
@@ -54,5 +56,9 @@ public:
     Node* left;
     Node* right;
 };
+
+
+std::ostream& operator<<(std::ostream& os, BST bst);
+
 
 #endif //BST_H

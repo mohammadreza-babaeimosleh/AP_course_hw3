@@ -4,6 +4,7 @@
 #include <iostream>
 #include <functional>
 #include <iomanip>
+#include<vector>
 
 class BST
 {
@@ -20,6 +21,8 @@ public:
     BST(Node _root);
     BST& operator++();
     BST operator++(int);
+    ~BST();
+    BST();
 
     
 private:

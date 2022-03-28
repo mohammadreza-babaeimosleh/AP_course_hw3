@@ -6,7 +6,8 @@ int main(int argc, char **argv)
 {
     if (true) // make false to run unit-tests
     {
-        BST tree{10};
+        BST tree{};
+        tree.add_node(10);
         tree.add_node(5);
         tree.add_node(15);
         tree.add_node(2);
@@ -50,7 +51,7 @@ int main(int argc, char **argv)
         //tree.find_successor(15);
         //tree.delete_node(13);
         //tree.bfs(print);
-        //std::cout << tree++ << std::endl;
+        //std::cout << tree << std::endl;
         //std::cout << (((tree.get_root())->right)->right)->value << std::endl;
         
         

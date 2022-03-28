@@ -3,7 +3,13 @@
 BST::BST(Node _root)
     : root{&_root}
 {
-    std::cout << "counstructor" << std::endl;
+    std::cout << "BST counstructor" << std::endl;
+}
+
+BST::BST()
+{
+    std::cout << "BST DEFAULT counstructor" << std::endl;
+    root = nullptr;
 }
 
 BST::Node*& BST::get_root()
@@ -103,9 +109,14 @@ size_t BST::length()
 
 bool BST::add_node(int value)
 {
+
+    Node* node{new Node{value}};
+
     if(root == nullptr)
     {
-        root->value == value;
+        root = node;
+        root->value = value;
+        return true;
     }
 
     std::function<void(int value, Node*& root)> adder = [&](int value, Node* root)->void
@@ -121,7 +132,7 @@ bool BST::add_node(int value)
 
             if(root->left == nullptr)
             {
-                Node* node{new Node{value}};
+
                 root->left = node;
             }
             else
@@ -379,5 +390,18 @@ BST BST::operator++(int)
     
     return tmp;
 }
+
+
+ BST::~BST()
+ {
+ 	std::vector<Node*> nodes;
+ 	bfs([&nodes](BST::Node*& node){nodes.push_back(node);});
+ 	for(auto& node: nodes)
+    {
+        std::cout << node->value <<std::endl;
+ 		delete node;
+    }
+ }
+ 
 
 

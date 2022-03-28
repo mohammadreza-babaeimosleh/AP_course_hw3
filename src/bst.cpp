@@ -369,6 +369,16 @@ std::ostream& operator<<(std::ostream& os, BST bst)
     return os;
 }
 
+std::ostream& operator<<(std::ostream& os, BST::Node node)
+{
+    os << "node adrress: " << &node << "\t";
+    os << "node value: " << node.value << "\t";
+    os << "left child adrress: " << node.left << "\t";
+    os << "right child adrress: " << node.right << "\t";
+
+    return os;
+}
+
 
 BST& BST::operator++()
 {
@@ -501,6 +511,7 @@ BST& BST::operator=(BST&& bst)
 BST::BST(BST&& bst)
 {
 
+    std::cout << "BST move constructor" << std::endl;
     std::vector<Node*> nodes;
  	bfs([&nodes](BST::Node*& node){nodes.push_back(node);});
  	for(auto& node: nodes)

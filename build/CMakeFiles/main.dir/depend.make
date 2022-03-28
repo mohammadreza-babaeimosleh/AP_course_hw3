@@ -7,5 +7,6 @@ CMakeFiles/main.dir/src/bst.cpp.o: ../src/bst.cpp
 CMakeFiles/main.dir/src/main.cpp.o: ../include/bst.h
 CMakeFiles/main.dir/src/main.cpp.o: ../src/main.cpp
 
+CMakeFiles/main.dir/src/unit_test.cpp.o: ../include/bst.h
 CMakeFiles/main.dir/src/unit_test.cpp.o: ../src/unit_test.cpp
 

@@ -42,7 +42,7 @@ class BST::Node
 public:
     Node(int value, Node* left = nullptr , Node* right = nullptr)
     {
-        std::cout << "normal constructor" << std::endl;
+        //std::cout << "normal constructor" << std::endl;
         this->value = value;
         this->left = left;
         this->right = right;
@@ -52,7 +52,7 @@ public:
     Node()
         : Node(0, nullptr , nullptr)
     {
-        std::cout << "defualt constructor" << std::endl;
+        //std::cout << "defualt constructor" << std::endl;
     }
 
 
@@ -61,14 +61,17 @@ public:
         , left{ node.left }
         , right{ node.right }
     {
-        std::cout << " copy constructor " << std::endl;
+        //std::cout << " copy constructor " << std::endl;
     }
+
+    
 
     int value;
     Node* left;
     Node* right;
 };
 
+std::ostream& operator<<(std::ostream& os, BST::Node node);
 
 std::ostream& operator<<(std::ostream& os, BST bst);
 

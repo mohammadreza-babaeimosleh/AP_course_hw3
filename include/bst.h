@@ -5,6 +5,7 @@
 #include <functional>
 #include <iomanip>
 #include<vector>
+#include<compare>
 
 class BST
 {
@@ -64,7 +65,11 @@ public:
         //std::cout << " copy constructor " << std::endl;
     }
 
+    std::partial_ordering operator<=>(const Node& node) {return value <=> node.value; }
+    bool operator==(const Node& node) { return value == node.value; }
     
+    std::partial_ordering operator<=>(const int& num) {return value <=> num; }
+    bool operator==(const int& num) { return value == num; }
 
     int value;
     Node* left;

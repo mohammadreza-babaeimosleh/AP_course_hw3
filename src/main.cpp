@@ -22,6 +22,11 @@ int main(int argc, char **argv)
         //std::cout << tree++ << std::endl;
         std::cout << ++copy_tree << std::endl;
 
+        BST::Node node1{10};
+        BST::Node node2{10};
+        std::cout << (10 > node1) << std::endl;
+
+
         //std::cout << tree << std::endl;
         // std::function<void(BST::Node*& node)> print = [&](BST::Node* node)->void
         // {

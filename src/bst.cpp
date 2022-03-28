@@ -433,6 +433,47 @@ BST::BST(const BST& bst)
 
     filler(bst.root, &root);
 }
+
+
+BST& BST::operator=(const BST& bst)
+{
+    std::cout << "== operator" << std::endl;
+
+    std::vector<Node*> nodes;
+ 	bfs([&nodes](BST::Node*& node){nodes.push_back(node);});
+ 	for(auto& node: nodes)
+    {
+ 		delete node;
+    }
+
+    std::function<void(Node*const& root_org, Node** root)> filler = [&](Node*const root_org, Node** root)->void
+    {   
+        
+        if(root_org != nullptr)
+        {
+            *root = new Node{(root_org->value)};
+        }
+        
+
+        if(root_org->left != nullptr)
+        {
+            filler(root_org->left, &((*root)->left));
+        }
+
+        if(root_org->right != nullptr)
+        {
+            filler(root_org->right, &((*root)->right));
+        } 
+
+        return;
+
+    };
+
+    filler(bst.root, &root);
+    
+    return *this;
+    
+}
  
 
 

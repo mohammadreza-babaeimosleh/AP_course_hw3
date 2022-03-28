@@ -5,7 +5,7 @@
 
 int main(int argc, char **argv)
 {
-    if (true) // make false to run unit-tests
+    if (else) // make false to run unit-tests
     {
         BST tree{};
         tree.add_node(10);

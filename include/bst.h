@@ -26,6 +26,9 @@ public:
     BST(const BST& bst);
     BST& operator=(const BST& bst);
     BST& operator=(BST&& bst);
+    BST(BST&& bst);
+   
+
 
 
     

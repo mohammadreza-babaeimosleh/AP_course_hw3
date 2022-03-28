@@ -494,7 +494,23 @@ BST& BST::operator=(BST&& bst)
     bst.root = nullptr;
 
     return *this;
+
+}
+
+
+BST::BST(BST&& bst)
+{
+
+    std::vector<Node*> nodes;
+ 	bfs([&nodes](BST::Node*& node){nodes.push_back(node);});
+ 	for(auto& node: nodes)
+    {
+ 		delete node;
+    }
     
+    root = bst.root;
+    bst.root = nullptr;
+
 }
  
 

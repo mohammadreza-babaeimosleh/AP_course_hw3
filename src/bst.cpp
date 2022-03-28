@@ -437,7 +437,11 @@ BST::BST(const BST& bst)
 
 BST& BST::operator=(const BST& bst)
 {
-    std::cout << "== operator" << std::endl;
+    std::cout << "== operator copy version" << std::endl;
+    if(this == &bst)
+    {
+        return *this;
+    }
 
     std::vector<Node*> nodes;
  	bfs([&nodes](BST::Node*& node){nodes.push_back(node);});
@@ -471,6 +475,24 @@ BST& BST::operator=(const BST& bst)
 
     filler(bst.root, &root);
     
+    return *this;
+    
+}
+
+
+BST& BST::operator=(BST&& bst)
+{
+
+ 	std::vector<Node*> nodes;
+ 	bfs([&nodes](BST::Node*& node){nodes.push_back(node);});
+ 	for(auto& node: nodes)
+    {
+ 		delete node;
+    }
+    
+    root = bst.root;
+    bst.root = nullptr;
+
     return *this;
     
 }

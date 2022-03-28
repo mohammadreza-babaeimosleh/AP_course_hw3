@@ -1,7 +1,7 @@
 #include "bst.h"
 
-BST::BST(Node* _root)
-    : root{_root}
+BST::BST(Node _root)
+    : root{&_root}
 {
     std::cout << "counstructor" << std::endl;
 }
@@ -15,17 +15,18 @@ BST::Node*& BST::get_root()
 void BST::bfs(std::function<void(Node*& node)> func) 
 {
 
-    std::function<size_t(Node*& node)> depth = [&](Node* root)->size_t
-    {
 
-        if(root == nullptr)
+    std::function<size_t(Node*& node)> depth = [&](Node* node)->size_t
+    {
+        
+        if(node == nullptr)
         {
             return 0;
         }
         else
         {
-            size_t left_depth{ depth(root->left) };
-            size_t right_depth{ depth(root->right) };
+            size_t left_depth{ depth(node->left) };
+            size_t right_depth{ depth(node->right) };
             
             if(left_depth > right_depth)
             {
@@ -102,6 +103,10 @@ size_t BST::length()
 
 bool BST::add_node(int value)
 {
+    if(root == nullptr)
+    {
+        root->value == value;
+    }
 
     std::function<void(int value, Node*& root)> adder = [&](int value, Node* root)->void
     {
@@ -351,6 +356,28 @@ std::ostream& operator<<(std::ostream& os, BST bst)
     os << "************************************************************************************************ " << std::endl;
 
     return os;
+}
+
+
+BST& BST::operator++()
+{
+    std::function<void(Node*& node)> plus_1 = [&](Node* node)->void
+    {
+        node->value = node->value + 1;
+    };
+    
+    bfs(plus_1);
+    
+    return *this;
+}
+
+
+BST BST::operator++(int)
+{
+    BST tmp{*root};
+    ++(*this);
+    
+    return tmp;
 }
 
 

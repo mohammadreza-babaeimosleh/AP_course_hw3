@@ -6,21 +6,15 @@ int main(int argc, char **argv)
 {
     if (true) // make false to run unit-tests
     {
-        BST::Node root{10};
-        BST tree{&root};
-        BST::Node node1{5};
-        BST::Node node2{15};
-        BST::Node node3{2};
-        BST::Node node4{4};
-        BST::Node node5{12};
-        BST::Node node6{13};
+        BST tree{10};
+        tree.add_node(5);
+        tree.add_node(15);
+        tree.add_node(2);
+        tree.add_node(4);
+        tree.add_node(12);
+        tree.add_node(13);
+        tree.add_node(16);
         
-        root.left = &node1;
-        root.right = &node2;
-        node1.left = &node3;
-        node3.right = &node4;
-        node2.left = &node5;
-        node5.right = &node6;
 
         // std::function<void(BST::Node*& node)> print = [&](BST::Node* node)->void
         // {
@@ -48,18 +42,16 @@ int main(int argc, char **argv)
         //     }
         // };
 
-        tree.add_node(16);
+        //tree++;
         // tree.add_node(20);
-        // std::cout << ((root.right)->right)->value<< "  " << ((root.right)->right)->right << "  " << ((root.right)->right)->left<< std::endl;
-        // std::cout<< tree.length() << std::endl;
-        //tree.bfs(print);
-        // tree.find_node(20);
-        // tree.find_parrent(20);
+        //std::cout<< tree.length() << std::endl;
+        //tree.find_node(13);
+        //tree.find_parrent(13);
         //tree.find_successor(15);
-        //tree.delete_node(10);
+        //tree.delete_node(13);
         //tree.bfs(print);
-        std::cout << tree << std::endl;
-
+        //std::cout << tree++ << std::endl;
+        //std::cout << (((tree.get_root())->right)->right)->value << std::endl;
         
         
     }

@@ -17,6 +17,8 @@ vector
 -
 compare
 -
+initializer_list
+-
 
 /usr/src/app/src/unit_test.cpp
 algorithm

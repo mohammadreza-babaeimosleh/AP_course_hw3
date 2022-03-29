@@ -12,6 +12,18 @@ BST::BST()
     root = nullptr;
 }
 
+BST::BST(std::initializer_list<int> args)
+    : root{nullptr}
+{
+    std::cout << "multiargument constructor" << std::endl;
+    for(auto i : args)
+    {
+        add_node(i);
+    }
+}
+
+
+
 BST::Node*& BST::get_root()
 {
     return root ; 

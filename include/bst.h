@@ -6,12 +6,15 @@
 #include <iomanip>
 #include<vector>
 #include<compare>
+#include<initializer_list>
+
 
 
 class BST
 {
 public:
     class Node;
+
     Node*& get_root();
     void bfs(std::function<void(Node*& node)> func);
     size_t length();
@@ -29,11 +32,8 @@ public:
     BST& operator=(const BST& bst);
     BST& operator=(BST&& bst);
     BST(BST&& bst);
-   
+    BST(std::initializer_list<int> args);
 
-
-
-    
 private:
     Node* root;
 };

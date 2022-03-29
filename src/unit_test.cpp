@@ -440,13 +440,14 @@ TEST(HW3Test, TEST28) {
     EXPECT_EQ(adddress_of_root, move.get_root());
     EXPECT_EQ(test_value, move.get_root()->left->right->value);
 }
-/*
+
 TEST(HW3Test, TEST29) {
     BST bst1{5, 1, 10, 2, 8, 50, 4, 60};
     BST bst2{3, 2, 100, 20, 8, 50, 4, 60, 44, 23};
     EXPECT_EQ((*bst1.find_successor(5))->value, 4);
     EXPECT_EQ(bst2.length(), 10);
 }
+
 
 TEST(HW3Test, TEST30) {
     BST bst{5, 1, 10, 2, 8, 50, 4, 60};
@@ -457,6 +458,7 @@ TEST(HW3Test, TEST30) {
     EXPECT_EQ(bst.get_root()->right->right->right->value, 61);
     EXPECT_EQ(bst2.get_root()->right->right->right->value, 61);
 }
+
 TEST(HW3Test, TEST31) {
     BST bst1{5, 1, 10, 2, 8, 50, 4, 60};
     BST bst2{bst1++};
@@ -467,4 +469,4 @@ TEST(HW3Test, TEST31) {
     for(size_t i{}; i < values1.size(); i++)
         EXPECT_EQ(values2[i], values1[i]-1);    
 }
-*/
+

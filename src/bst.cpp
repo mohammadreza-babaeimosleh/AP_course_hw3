@@ -119,13 +119,13 @@ bool BST::add_node(int value)
         return true;
     }
 
-    std::function<void(int value, Node*& root)> adder = [&](int value, Node* root)->void
+    std::function<bool(int value, Node*& root)> adder = [&](int value, Node* root)->bool
     {
-
+        
         if(root->value == value)
         {
             std::cout << "this value already exists in the tree" << std::endl;
-            return;
+            return false;
         }
         else if(root->value > value)
         {
@@ -134,6 +134,7 @@ bool BST::add_node(int value)
             {
 
                 root->left = node;
+                return true;
             }
             else
             {
@@ -146,8 +147,8 @@ bool BST::add_node(int value)
 
             if(root->right == nullptr)
             {
-                Node* node {new Node{value}};
                 root->right = node ;
+                return true;
             }
             else
             {
@@ -156,10 +157,18 @@ bool BST::add_node(int value)
 
         }
 
+        return false;
+
     };
 
-    adder(value, root);
-    return true;
+    if(adder(value, root))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 
 }
 
@@ -207,8 +216,10 @@ BST::Node** BST::find_node(int value)
         return nullptr;
 
     };
+    
+    Node** output{finder(value, &root)};
+    return output;
 
-    return finder(value, &root);
 
 }
 
@@ -224,7 +235,6 @@ BST::Node** BST::find_parrent(int value)
 
     std::function<Node**(int value, Node** root)> parrent_finder = [&](int value, Node** root)->Node**
     {
-        Node** parrent{nullptr};
 
         if((*root) == nullptr)
         {
@@ -236,37 +246,31 @@ BST::Node** BST::find_parrent(int value)
             std::cout << "given valuue is the root and has no parrents" << std::endl;
             return nullptr;
         }
-
-        if(((*root)->left) !=nullptr && ((*root)->left)->value == value)
+        else if(((*root)->left) !=nullptr && ((*root)->left)->value == value)
         {
             std::cout << "parrent is   " << (*root)->value << std::endl;
             return root;
         }
-
-        
-        if(((*root)->right) !=nullptr && ((*root)->right)->value == value)
+        else if(((*root)->right) !=nullptr && ((*root)->right)->value == value)
         {
             std::cout << "parrent is   " << (*root)->value << std::endl;
             return root;
         }
-
-        if((*root)->value > value)
+        else if((*root)->value > value)
         {
-            Node* tmp{(*root)->left};
-            parrent = parrent_finder(value, &tmp);
+            return parrent_finder(value, &((*root)->left));
+        }
+        else if((*root)->value < value)
+        {
+            return parrent_finder(value, &((*root)->left));
         }
 
-        if((*root)->value < value)
-        {
-            Node* tmp{(*root)->right};
-            parrent = parrent_finder(value, &tmp);
-        }
+        return nullptr;
 
-        return parrent;
-        
     };
 
-    return parrent_finder(value, &root);
+    Node** parrent{parrent_finder(value, &root)};
+    return parrent;
 
 }
 
@@ -492,8 +496,8 @@ BST& BST::operator=(const BST& bst)
 
 BST& BST::operator=(BST&& bst)
 {
-
- 	std::vector<Node*> nodes;
+    std::cout << "operator= move cersion" << std::endl;
+    std::vector<Node*> nodes;
  	bfs([&nodes](BST::Node*& node){nodes.push_back(node);});
  	for(auto& node: nodes)
     {
@@ -510,18 +514,9 @@ BST& BST::operator=(BST&& bst)
 
 BST::BST(BST&& bst)
 {
-
-    std::cout << "BST move constructor" << std::endl;
-    std::vector<Node*> nodes;
- 	bfs([&nodes](BST::Node*& node){nodes.push_back(node);});
- 	for(auto& node: nodes)
-    {
- 		delete node;
-    }
-    
+    root = new Node{};
     root = bst.root;
     bst.root = nullptr;
-
 }
  
 

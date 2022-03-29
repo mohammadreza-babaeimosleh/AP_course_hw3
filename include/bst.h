@@ -7,6 +7,7 @@
 #include<vector>
 #include<compare>
 
+
 class BST
 {
 public:
@@ -49,31 +50,31 @@ public:
         this->right = right;
     }
 
-
     Node()
         : Node(0, nullptr , nullptr)
     {
         //std::cout << "defualt constructor" << std::endl;
     }
 
-
     Node(const Node& node)
         : value{ node.value } 
         , left{ node.left }
         , right{ node.right }
     {
-        //std::cout << " copy constructor " << std::endl;
+        std::cout << " copy constructor " << std::endl;
     }
 
-    std::partial_ordering operator<=>(const Node& node) {return value <=> node.value; }
-    bool operator==(const Node& node) { return value == node.value; }
-    
-    std::partial_ordering operator<=>(const int& num) {return value <=> num; }
-    bool operator==(const int& num) { return value == num; }
+    std::partial_ordering operator<=>(const Node& node) const {return value <=> node.value; }
+    bool operator==(const Node& node) const { return value == node.value; }
+    std::partial_ordering operator<=>(const int& num) const {return value <=> num; }
+    bool operator==(const int& num) const { return value == num; }
 
     int value;
     Node* left;
     Node* right;
+
+
+
 };
 
 std::ostream& operator<<(std::ostream& os, BST::Node node);

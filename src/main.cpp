@@ -8,9 +8,18 @@ int main(int argc, char **argv)
     if (false) // make false to run unit-tests
     {
 
-        BST bst1{5, 1, 10, 2, 8, 50, 4, 60};
-        //BST bst2{3, 2, 100, 20, 8, 50, 4, 60, 44, 23};
-        std::cout << bst1 << std::endl;
+        BST bst{};
+        bst.add_node(25);
+        bst.add_node(10);
+        bst.add_node(50);
+        bst.add_node(65);
+        bst.add_node(5);
+        bst.add_node(20);
+        bst.add_node(22);
+
+        std::cout << bst << std::endl;
+
+    
         
     }
     else

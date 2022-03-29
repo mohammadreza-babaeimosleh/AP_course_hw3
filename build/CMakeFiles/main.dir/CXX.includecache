@@ -19,14 +19,18 @@ compare
 -
 initializer_list
 -
+string
+-
 
-/usr/src/app/src/unit_test.cpp
-algorithm
+/usr/src/app/src/bst.cpp
+bst.h
+/usr/src/app/src/bst.h
+
+/usr/src/app/src/main.cpp
+iostream
 -
 gtest/gtest.h
-/usr/src/app/src/gtest/gtest.h
-gmock/gmock.h
-/usr/src/app/src/gmock/gmock.h
+-
 bst.h
 /usr/src/app/src/bst.h
 

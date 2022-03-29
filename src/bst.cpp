@@ -1,27 +1,14 @@
 #include "bst.h"
 
 BST::BST(Node _root)
-    : root{&_root}
+    : root{ &_root }
 {
-    std::cout << "BST counstructor" << std::endl;
 }
 
 BST::BST()
+    : root{ nullptr }
 {
-    std::cout << "BST DEFAULT counstructor" << std::endl;
-    root = nullptr;
 }
-
-BST::BST(std::initializer_list<int> args)
-    : root{nullptr}
-{
-    std::cout << "multiargument constructor" << std::endl;
-    for(auto i : args)
-    {
-        add_node(i);
-    }
-}
-
 
 
 BST::Node*& BST::get_root()
@@ -32,7 +19,7 @@ BST::Node*& BST::get_root()
 
 void BST::bfs(std::function<void(Node*& node)> func) 
 {
-
+    //defining lambda func for calculate depth(height) of tree
     std::function<size_t(Node*& node)> depth = [&](Node* node)->size_t
     {
         
@@ -57,6 +44,7 @@ void BST::bfs(std::function<void(Node*& node)> func)
 
     };
 
+    //defining lambda function for applying func to every node 
     std::function<void(size_t current_depth, Node*& node)> apply = [&](size_t current_depth , Node* node)->void
     {
 
@@ -122,9 +110,9 @@ size_t BST::length()
 bool BST::add_node(int value)
 {
 
-    Node* node{new Node{value}};
+    Node* node{ new Node{ value } };
 
-    if(root == nullptr)
+    if(root == nullptr) //empty tree
     {
         root = node;
         root->value = value;
@@ -241,7 +229,6 @@ BST::Node** BST::find_parrent(int value)
 
     if(find_node(value) == nullptr)
     {
-        std::cout << "the value does not exist" << std::endl;
         return nullptr;
     }
 
@@ -281,7 +268,7 @@ BST::Node** BST::find_parrent(int value)
 
     };
 
-    Node** parrent{parrent_finder(value, &root)};
+    Node** parrent{ parrent_finder(value, &root) };
     return parrent;
 
 }
@@ -289,9 +276,8 @@ BST::Node** BST::find_parrent(int value)
 
 BST::Node** BST::find_successor(int value)
 {
-    if(find_node(value) == nullptr)
+    if(find_node(value) == nullptr) //check for value existance
     {
-        std::cout << "value does not exist" << std::endl;
         return nullptr;
     }
     else
@@ -309,6 +295,7 @@ BST::Node** BST::find_successor(int value)
 
             while(true)
             {
+
                 if((*successor)->right != nullptr)
                 {
                     successor = &((*successor)->right);
@@ -317,6 +304,7 @@ BST::Node** BST::find_successor(int value)
                 {
                     return successor;
                 }
+
             }
 
         }
@@ -337,27 +325,23 @@ bool BST::delete_node(int value)
 
     if((*target_node)->left == nullptr && (*target_node)->right == nullptr)
     {
-        std::cout << "we want to delete " << (*target_node)->value <<std::endl; 
         (*target_node) = nullptr;
         return true;
     }
 
     if((*target_node)->left == nullptr && (*target_node)->right != nullptr)
     {
-        std::cout << "we want to delete " << (*target_node)->value <<std::endl; 
         *target_node = (*target_node)->right;
         return true;
     }
 
     if((*target_node)->left != nullptr && (*target_node)->right == nullptr)
     {
-        std::cout << "we want to delete " << (*target_node)->value <<std::endl; 
         *target_node = (*target_node)->left;
         return true;
     }
 
-    std::cout << "we want to delete " << (*target_node)->value <<std::endl; 
-    Node** successor{find_successor(value)};
+    Node** successor{ find_successor(value) };
     (*target_node)->value = (*successor)->value;
     *successor = nullptr;
     return true;
@@ -367,7 +351,7 @@ bool BST::delete_node(int value)
 
 std::ostream& operator<<(std::ostream& os, BST bst)
 {
-    os << "************************************************************************************************ " << std::endl;
+    os << std::string(80, '*') << std::endl;
 
     std::function<void(BST::Node*& node)> print = [&](BST::Node* node)->void
     {
@@ -380,10 +364,10 @@ std::ostream& operator<<(std::ostream& os, BST bst)
 
     os << "binary search tree size: " << bst.length() << std::endl;
 
-    os << "************************************************************************************************ " << std::endl;
-
+    os << std::string(80, '*') << std::endl;
     return os;
 }
+
 
 std::ostream& operator<<(std::ostream& os, BST::Node node)
 {
@@ -398,6 +382,7 @@ std::ostream& operator<<(std::ostream& os, BST::Node node)
 
 BST& BST::operator++()
 {
+    //ussing lambda function just for using bfs
     std::function<void(Node*& node)> plus_1 = [&](Node* node)->void
     {
         node->value = node->value + 1;
@@ -411,7 +396,7 @@ BST& BST::operator++()
 
 BST BST::operator++(int)
 {
-    BST tmp{*this};
+    BST tmp{ *this };
     ++(*this);
     
     return tmp;
@@ -430,16 +415,15 @@ BST::~BST()
 }
 
 
-BST::BST(const BST& bst)
+BST::BST(const BST& bst) // copy constructor
 {
 
-    std::cout << "BST copy constructor" << std::endl;
     std::function<void(Node*const& root_org, Node** root)> filler = [&](Node*const root_org, Node** root)->void
     {   
         
         if(root_org != nullptr)
         {
-            *root = new Node{(root_org->value)};
+            *root = new Node{ (root_org->value) };
         }
         
 
@@ -463,8 +447,7 @@ BST::BST(const BST& bst)
 
 BST& BST::operator=(const BST& bst)
 {
-    std::cout << "== operator copy version" << std::endl;
-    if(this == &bst)
+    if(this == &bst) // bst = bst 
     {
         return *this;
     }
@@ -481,7 +464,7 @@ BST& BST::operator=(const BST& bst)
         
         if(root_org != nullptr)
         {
-            *root = new Node{(root_org->value)};
+            *root = new Node{ (root_org->value) };
         }
         
 
@@ -508,7 +491,7 @@ BST& BST::operator=(const BST& bst)
 
 BST& BST::operator=(BST&& bst)
 {
-    std::cout << "operator= move cersion" << std::endl;
+    // deleting old nodes
     std::vector<Node*> nodes;
  	bfs([&nodes](BST::Node*& node){nodes.push_back(node);});
  	for(auto& node: nodes)
@@ -516,6 +499,7 @@ BST& BST::operator=(BST&& bst)
  		delete node;
     }
     
+    // stealing the root pointer
     root = bst.root;
     bst.root = nullptr;
 
@@ -530,6 +514,17 @@ BST::BST(BST&& bst)
     root = bst.root;
     bst.root = nullptr;
 }
+
+
+BST::BST(std::initializer_list<int> args)
+    : root{ nullptr }
+{
+    for(auto i : args)
+    {
+        add_node(i);
+    }
+}
+
  
 
 
